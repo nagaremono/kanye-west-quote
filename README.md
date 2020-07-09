@@ -7,3 +7,8 @@ Features:
 * Lets user store their own quotes
 
 Built with Reactjs and Create React App
+
+To make a production build, run "npm run build" 
+
+Followed by "npm install -g serve"
+and then "serve -s build"
