@@ -1,5 +1,6 @@
 import React from 'react';
-import getKanyeQuote from '../api/getKanyeQuote'
+import getKanyeQuote from '../api/getKanyeQuote';
+import QuoteList from './QuoteList';
 
 class KanyeQuote extends React.Component {
   constructor(props) {
@@ -7,12 +8,19 @@ class KanyeQuote extends React.Component {
     this.state = {
       currentQuote: '',
       favorites: []
-    }
+    };
 
-    this.handleClick = this.handleClick.bind(this);
+    this.handleGetQuote = this.handleGetQuote.bind(this);
+    this.handleAddQuote = this.handleAddQuote.bind(this);
   }
 
-  handleClick() {
+  handleAddQuote() {
+    this.setState({
+      favorites: this.state.favorites.concat([this.state.currentQuote])
+    })
+  }
+
+  handleGetQuote() {
     this.updateCurrentQuote();
   }
 
@@ -22,7 +30,7 @@ class KanyeQuote extends React.Component {
 
   updateCurrentQuote() {
     getKanyeQuote().then((quote) => {
-      this.setState({currentQuote: quote.quote})
+      this.setState({currentQuote: quote.quote});
     })
   }
 
@@ -31,11 +39,12 @@ class KanyeQuote extends React.Component {
       <div className="kanyequote" >
         <h1>Kanye-West Quote</h1>
         <p>{this.state.currentQuote}</p>
-        <button onClick={this.handleClick} >Get Quote</button>
-        <button>Add</button>
+        <button onClick={this.handleGetQuote}>Get Quote</button>
+        <button onClick={this.handleAddQuote}>Add</button>
+        <QuoteList quotes={this.state.favorites} />
       </div>
-    )
+    );
   }
 }
 
-export default KanyeQuote
+export default KanyeQuote;
