@@ -38,7 +38,7 @@ class KanyeQuote extends React.Component {
     return (
       <div className="kanyequote" >
         <h1>Kanye-West Quote</h1>
-        <p>{this.state.currentQuote}</p>
+        <h3>{this.state.currentQuote}</h3>
         <button onClick={this.handleGetQuote}>Get Quote</button>
         <button onClick={this.handleAddQuote}>Add</button>
         <QuoteList quotes={this.state.favorites} />
